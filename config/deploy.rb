@@ -1,12 +1,4 @@
 require "bundler/capistrano"
-require 'bundler/deployment'
- 
- Capistrano::Configuration.instance(:must_exist).load do
-   after "deploy:update_code", "bundle:install"
-   after "deploy:finalize_update", "bundle:install"
-   Bundler::Deployment.define_task(self, :task, :except => { :no_release => true })
-   set :rake, lambda { "#{fetch(:bundle_cmd, "bundle")} exec rake" }
- end
 
 server "190.9.42.24", :web, :app, :db, primary: true
 
@@ -17,7 +9,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "https://github.com/rbarrera87/#{application}.git"
+set :repository, "git@github.com:rbarrera87/#{application}.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
@@ -56,9 +48,4 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
-  before "deploy:cold",  "deploy:install_bundler"
-
-  task :install_bundler, :roles => :app do
-    run "type -P bundle &>/dev/null || { sudo su; gem install bundler --no-rdoc --no-ri; }"
-  end
 end
