@@ -48,4 +48,9 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+  before "deploy:cold",  "deploy:install_bundler"
+
+  task :install_bundler, :roles => :app do
+    run "type -P bundle &>/dev/null || { gem install bundler --no-rdoc --no-ri; }"
+  end
 end
