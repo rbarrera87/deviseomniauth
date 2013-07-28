@@ -2,7 +2,7 @@ require "bundler/capistrano"
 
 server "190.9.42.24", :web, :app, :db, primary: true
 
-set :application, "blog"
+set :application, "deviseomniauth"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache

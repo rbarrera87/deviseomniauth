@@ -77,4 +77,9 @@ Devisetest::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  TWITTER_KEY = 'FQUixJZjXl9hS6eQrKaMNw'
+  TWITTER_SECRET = 'Ng4OGKsxrZAIq2DB8yCTJVBfNXoXYzoRyw2Zg8M'
+
+  FACEBOOK_KEY = '497389560317600'
+  FACEBOOK_SECRET = '1a6949149ab8780a21ebc9bb7e871363
 end
