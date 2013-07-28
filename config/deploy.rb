@@ -1,4 +1,12 @@
 require "bundler/capistrano"
+require 'bundler/deployment'
+ 
+ Capistrano::Configuration.instance(:must_exist).load do
+   after "deploy:update_code", "bundle:install"
+   after "deploy:finalize_update", "bundle:install"
+   Bundler::Deployment.define_task(self, :task, :except => { :no_release => true })
+   set :rake, lambda { "#{fetch(:bundle_cmd, "bundle")} exec rake" }
+ end
 
 server "190.9.42.24", :web, :app, :db, primary: true
 
