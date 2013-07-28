@@ -9,7 +9,7 @@ set :deploy_via, :remote_cache
 set :use_sudo, false
 
 set :scm, "git"
-set :repository, "git@github.com:rbarrera87/#{application}.git"
+set :repository, "https://github.com:rbarrera87/#{application}.git"
 set :branch, "master"
 
 default_run_options[:pty] = true
@@ -51,6 +51,6 @@ namespace :deploy do
   before "deploy:cold",  "deploy:install_bundler"
 
   task :install_bundler, :roles => :app do
-    run "type -P bundle &>/dev/null || { gem install bundler --no-rdoc --no-ri; }"
+    run "type -P bundle &>/dev/null || { sudo su; gem install bundler --no-rdoc --no-ri; }"
   end
 end
