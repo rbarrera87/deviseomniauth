@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
   		user.provider = auth.provider
   		user.uid = auth.uid
   		user.username = auth.info.nickname
-      user.email = auth.provider == 'facebook' ? auth.info.email : nil
+      user.email = auth.info.email
+      #auth.provider == 'facebook' or auth.provider == 'github' ? auth.info.email : nil
   	end
   end
 
@@ -35,5 +36,11 @@ class User < ActiveRecord::Base
   	else
   		super
   	end
+  end
+  #TODO: Unified the accounts
+  def check_email
+    if User.count(:email) > 0 
+      
+    end
   end
 end

@@ -27,6 +27,7 @@ gem 'turbolinks'
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
 
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

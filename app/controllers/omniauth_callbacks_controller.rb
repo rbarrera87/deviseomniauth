@@ -1,6 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def all
-		#raise request.env["omniauth.auth"].to_s
+		#@variable = request.env["omniauth.auth"]
 		user = User.from_omniauth(request.env["omniauth.auth"])
 		if user.persisted?
 			sign_in_and_redirect user, notice: "Pelos"
@@ -9,6 +9,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 			redirect_to new_user_registration_url
 		end
 	end
-	alias_method :twitter, :all
+	alias_method :twitter, :all 
 	alias_method :facebook, :all
+	alias_method :github, :all
 end
